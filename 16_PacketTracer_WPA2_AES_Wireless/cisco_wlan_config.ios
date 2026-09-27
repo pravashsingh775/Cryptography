@@ -1,0 +1,37 @@
+! Cisco IOS Configuration Script for Secure WLAN / AP / Switch
+! Practical 16: WPA2-AES Wireless Network
+
+! 1. Access Point / Router Configuration
+enable
+configure terminal
+hostname Secure-WLAN-AP
+
+! Configure Wireless Interface
+interface Dot11Radio0
+ encryption mode ciphers aes-ccm
+ ssid Crypto_Secure_WLAN
+ no shutdown
+exit
+
+! Configure SSID with WPA2-PSK Key
+dot11 ssid Crypto_Secure_WLAN
+ authentication open
+ authentication key-management wpa2
+ wpa-psk ascii SecureWirelessPass2026!
+ guest-mode
+exit
+
+! Configure LAN DHCP Pool
+ip dhcp pool WLAN_CLIENTS
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 8.8.8.8
+exit
+
+interface FastEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+exit
+
+end
+write memory
