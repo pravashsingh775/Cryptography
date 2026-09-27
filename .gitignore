@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary cryptographic test outputs generated during verification runs
+*.bin
+*.pem
+*.crt
+*.key
+plaintext.txt
+decrypted.txt
+transaction.txt
+lab_hashes.txt
+test_passwd
+test_shadow
+target_hashes.txt
+ipp.txt
+openvpn-status.log
