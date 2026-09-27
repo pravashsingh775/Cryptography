@@ -77,7 +77,7 @@ def benchmark_speed():
     aes_speed = total_mb / aes_time
     
     # TripleDES Benchmark
-    des_key = os.urandom(24)
+    des_key = algorithms.TripleDES.generate_key()
     des_iv = os.urandom(8)
     start = time.perf_counter()
     for _ in range(iterations):

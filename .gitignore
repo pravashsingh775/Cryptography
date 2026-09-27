@@ -1,8 +1,14 @@
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Temporary test artifacts & keys from lab runs
 *.bin
-*.crt
 *.pem
+*.crt
+*.key
 plaintext.txt
 decrypted.txt
 transaction.txt
@@ -10,9 +16,15 @@ lab_hashes.txt
 test_passwd
 test_shadow
 target_hashes.txt
+ipp.txt
+openvpn-status.log
+
+# Generator scripts
 scratch_init.py
 gen_part1.py
 gen_part2.py
 gen_part3.py
 gen_part4.py
 generate_full_lab.py
+build_all_practicals.py
+build_lab.py
