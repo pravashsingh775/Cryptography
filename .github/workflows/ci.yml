@@ -1,0 +1,65 @@
+name: Cryptography Lab CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  test-and-verify:
+    name: Verify Python Implementations & Crypto Benchmarks
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    - name: Install System Dependencies (OpenSSL & Tools)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openssl
+
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install cryptography
+
+    - name: Run Cryptography Practical Suite (Batch Execution)
+      run: |
+        python run_lab.py --all
+
+    - name: Verify All 16 Practical Directories & Documentation
+      run: |
+        python -c "
+        import os, sys
+        dirs = [
+            '01_Classical_Ciphers_CrypTool',
+            '02_Frequency_Analysis_CrypTool',
+            '03_DES_vs_AES_CrypTool',
+            '04_RSA_Keys_File_Crypto_OpenSSL',
+            '05_SHA256_Digital_Signatures_OpenSSL',
+            '06_X509_Certificates_OpenSSL',
+            '07_RSA_and_Diffie_Hellman_Python',
+            '08_AES_and_SHA256_Messaging_Python',
+            '09_Password_Hashing_Salting_Python',
+            '10_Wireshark_HTTPS_TLS_Handshake',
+            '11_Wireshark_VPN_vs_Unencrypted_Traffic',
+            '12_Wireshark_Secure_vs_Insecure_Protocols',
+            '13_Kali_John_The_Ripper',
+            '14_Kali_SSH_Key_Authentication',
+            '15_Kali_OpenVPN_Configuration',
+            '16_PacketTracer_WPA2_AES_Wireless'
+        ]
+        missing = [d for d in dirs if not os.path.isdir(d) or not os.path.isfile(os.path.join(d, 'README.md'))]
+        if missing:
+            print(f'Error: Missing experiment documentation: {missing}')
+            sys.exit(1)
+        print('All 16 practical modules validated successfully!')
+        "

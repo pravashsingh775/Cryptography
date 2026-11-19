@@ -134,6 +134,6 @@ Unencrypted ASCII text has low entropy ($H pprox 4.0 - 4.5\ 	ext{bits/byte}$). 
 
 ## 📸 Network Capture Screenshots
 
-![VPN Encrypted Tunnel Connection](VPN%20Connection.jpg)
+![VPN Encrypted Tunnel Connection](VPN%20conection.jpeg)
 
 ![VPN Encrypted Networking Traffic](Vpn%20based%20networking.jpg)
