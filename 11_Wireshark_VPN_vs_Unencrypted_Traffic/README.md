@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 11
 - **Practical Problem Statement:** Capture and analyze encrypted VPN traffic using Wireshark, and compare it with unencrypted network communication.
@@ -128,3 +128,12 @@ Unencrypted ASCII text has low entropy ($H pprox 4.0 - 4.5\ 	ext{bits/byte}$). 
 
 3. **Q3: What is a "DNS Leak" in the context of VPNs?**
    - **Answer:** A DNS leak occurs when DNS requests bypass the encrypted VPN tunnel and are sent unencrypted to the default ISP DNS server, revealing visited domain names to eavesdroppers.
+
+
+---
+
+## 📸 Network Capture Screenshots
+
+![VPN Encrypted Tunnel Connection](VPN%20Connection.jpg)
+
+![VPN Encrypted Networking Traffic](Vpn%20based%20networking.jpg)

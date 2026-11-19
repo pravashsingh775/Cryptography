@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 06
 - **Practical Problem Statement:** Create a self-signed X.509 digital certificate and analyze its attributes, validity, and security features using OpenSSL.
@@ -129,3 +129,10 @@ X.509 is an ITU-T standard defining the format of public key certificates. It cr
 
 4. **Q4: What is the purpose of the `BasicConstraints` extension?**
    - **Answer:** It defines whether the certificate subject is a Certificate Authority (`CA:TRUE` - permitted to sign subordinate certificates) or an End-Entity server/client (`CA:FALSE` - cannot sign other certificates), preventing unauthorized CA impersonation.
+
+
+---
+
+## 📸 Visual Verification Screenshot
+
+![Digital Certificate Inspection](Digital%20Certificate.jpg)

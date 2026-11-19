@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 14
 - **Practical Problem Statement:** Generate SSH/RSA key pairs and configure passwordless authentication between Linux systems.

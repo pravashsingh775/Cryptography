@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 12
 - **Practical Problem Statement:** Analyze captured network packets to identify secure and insecure communication protocols and their security implications.
@@ -129,3 +129,10 @@ SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2
 
 3. **Q3: What attack does DNSSEC prevent compared to standard DNS?**
    - **Answer:** Standard DNS is unauthenticated and vulnerable to **DNS Cache Poisoning** and spoofing. DNSSEC adds cryptographic digital signatures to DNS records (RRSIG), allowing resolvers to verify the authenticity and integrity of DNS responses.
+
+
+---
+
+## 📸 Protocol Comparison Capture Screenshot
+
+![Secure vs Insecure Protocol Packet Inspection](Secure%20and%20insecure%20protocola%20.jpg)

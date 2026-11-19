@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Practical 03: Encrypt Sample Data Using DES and AES & Performance Comparison
+Student Name: Pravash Singh
 Course: Cryptography (CSL0509)
 Faculty: Mr. Hirendra Singh Sengar
 """
@@ -77,7 +78,7 @@ def benchmark_speed():
     aes_speed = total_mb / aes_time
     
     # TripleDES Benchmark
-    des_key = algorithms.TripleDES.generate_key()
+    des_key = os.urandom(24)
     des_iv = os.urandom(8)
     start = time.perf_counter()
     for _ in range(iterations):

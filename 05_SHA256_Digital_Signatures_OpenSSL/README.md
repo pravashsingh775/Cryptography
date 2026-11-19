@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 05
 - **Practical Problem Statement:** Generate SHA-256 hash values, create digital signatures, and verify their authenticity using OpenSSL.
@@ -167,3 +167,12 @@ e M_1$ such that $	ext{SHA256}(M_1) = 	ext{SHA256}(M_2)$.
 
 4. **Q4: What is the difference between RSA-PKCS#1 v1.5 and RSA-PSS signature padding?**
    - **Answer:** RSA-PKCS#1 v1.5 uses deterministic padding which has theoretical vulnerabilities. RSA-PSS (Probabilistic Signature Scheme) incorporates random salt into the padding, providing provable security reducible to the hardness of RSA in the random oracle model.
+
+
+---
+
+## 📸 Visual Verification Screenshots
+
+![SHA-256 Digest Output](SHA-256.jpg)
+
+![Digital Signature Verification](Digital%20signature.jpg)

@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 04
 - **Practical Problem Statement:** Generate RSA public and private key pairs and perform secure file encryption and decryption using OpenSSL.
@@ -154,3 +154,10 @@
 
 4. **Q4: How does OpenSSL represent RSA keys on disk?**
    - **Answer:** OpenSSL encodes RSA keys using ASN.1 / DER binary representation wrapped inside Base64 PEM (Privacy Enhanced Mail) containers bounded by `-----BEGIN RSA PRIVATE KEY-----` or `-----BEGIN PUBLIC KEY-----`.
+
+
+---
+
+## 📸 Visual Verification Screenshot
+
+![OpenSSL RSA Keypair and Encryption](RSA.jpg)

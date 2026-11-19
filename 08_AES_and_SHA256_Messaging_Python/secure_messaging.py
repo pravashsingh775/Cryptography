@@ -1,99 +1,78 @@
 # -*- coding: utf-8 -*-
 """
-Practical 08: Secure Text Messaging Application (AES-256 + SHA-256)
-Course: Cryptography (CSL0509)
-Faculty: Mr. Hirendra Singh Sengar
+Practical 08: Secure Text Messaging Application (AES-GCM/CBC & SHA-256)
+Student Name: Pravash Singh
+Course: Cryptography (CSL0509) – B.Tech AIML V Semester
+Faculty Name: Mr. Hirendra Singh Sengar
+Academic Year: 2026-27
 """
 
-import os
-import hmac
 import hashlib
-import base64
+import os
+import secrets
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-try:
-    from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-    from cryptography.hazmat.primitives import padding
-    from cryptography.hazmat.backends import default_backend
-    HAS_CRYPTO = True
-except ImportError:
-    HAS_CRYPTO = False
 
-def derive_keys(master_pass: str):
-    h = hashlib.sha256(master_pass.encode('utf-8')).digest()
-    enc_key = hashlib.sha256(h + b"ENC").digest()
-    mac_key = hashlib.sha256(h + b"MAC").digest()
-    return enc_key, mac_key
+def to_hex(data: bytes) -> str:
+    """Convert bytes into a clean hexadecimal string."""
+    return data.hex()
 
-def secure_send(msg: str, master_pass: str) -> dict:
-    enc_key, mac_key = derive_keys(master_pass)
-    iv = os.urandom(16)
-    
-    if HAS_CRYPTO:
-        padder = padding.PKCS7(128).padder()
-        padded_data = padder.update(msg.encode('utf-8')) + padder.finalize()
-        cipher = Cipher(algorithms.AES(enc_key), modes.CBC(iv), backend=default_backend())
-        encryptor = cipher.encryptor()
-        ciphertext = encryptor.update(padded_data) + encryptor.finalize()
-    else:
-        # Fallback XOR simulation
-        ciphertext = bytes([b ^ enc_key[i % 32] for i, b in enumerate(msg.encode('utf-8'))])
-        
-    tag = hmac.new(mac_key, iv + ciphertext, hashlib.sha256).hexdigest()
-    return {
-        "iv": base64.b64encode(iv).decode('ascii'),
-        "ciphertext": base64.b64encode(ciphertext).decode('ascii'),
-        "tag": tag
-    }
-
-def secure_receive(payload: dict, master_pass: str) -> str:
-    enc_key, mac_key = derive_keys(master_pass)
-    iv = base64.b64decode(payload["iv"])
-    ciphertext = base64.b64decode(payload["ciphertext"])
-    received_tag = payload["tag"]
-    
-    expected_tag = hmac.new(mac_key, iv + ciphertext, hashlib.sha256).hexdigest()
-    if not hmac.compare_digest(expected_tag, received_tag):
-        raise ValueError("AUTHENTICATION FAILED: Message has been tampered with!")
-        
-    if HAS_CRYPTO:
-        cipher = Cipher(algorithms.AES(enc_key), modes.CBC(iv), backend=default_backend())
-        decryptor = cipher.decryptor()
-        padded_data = decryptor.update(ciphertext) + decryptor.finalize()
-        unpadder = padding.PKCS7(128).unpadder()
-        plaintext = unpadder.update(padded_data) + unpadder.finalize()
-        return plaintext.decode('utf-8')
-    else:
-        plaintext = bytes([b ^ enc_key[i % 32] for i, b in enumerate(ciphertext)])
-        return plaintext.decode('utf-8')
 
 def main():
     print("=" * 75)
-    print(" PRACTICAL 08: AES-256 & SHA-256 SECURE MESSAGING")
+    print(" PRACTICAL 08: AES ENCRYPTION & SHA-256 SECURE MESSAGING")
+    print(" Student Name : Pravash Singh")
+    print(" Course       : Cryptography (CSL0509) – B.Tech AIML V Semester")
     print("=" * 75)
-    
-    secret_pass = "TopSecretSharedKey2026"
-    msg = "Mission Directive: Transfer operative to safehouse Alpha at 0200 hrs."
-    
-    print(f"\n[+] Alice Sends: '{msg}'")
-    payload = secure_send(msg, secret_pass)
-    print(f"[+] Ciphertext (Base64): {payload['ciphertext'][:40]}...")
-    print(f"[+] HMAC-SHA256 Tag:    {payload['tag']}")
-    
-    decrypted = secure_receive(payload, secret_pass)
-    print(f"\n[+] Bob Decrypted: '{decrypted}'")
-    
-    # Tamper simulation
-    print("\n[+] Simulating Adversarial Tampering...")
-    tampered_payload = payload.copy()
-    tampered_payload["ciphertext"] = base64.b64encode(b"TamperedDataBytes123456").decode('ascii')
+
+    message = "Mission Directive: Transfer operative to safehouse Alpha at 0200 hrs."
+    data = message.encode("utf-8")
+    print(f"\n[+] Input Plaintext Message:\n    '{message}'")
+
+    # Step 1: Generate 128-bit key and random 96-bit IV
+    key = AESGCM.generate_key(bit_length=128)
+    iv = secrets.token_bytes(12)
+
+    # Step 2: AES-GCM Authenticated Encryption
+    aes = AESGCM(key)
+    ciphertext = aes.encrypt(iv, data, None)
+
+    print("\n--- [1] AES ENCRYPTION (GCM Authenticated Mode) ---")
+    print(f"    AES Key (128-bit) : {to_hex(key)}")
+    print(f"    Random IV (96-bit): {to_hex(iv)}")
+    print(f"    Ciphertext + Tag  : {to_hex(ciphertext)}")
+
+    # Step 3: Decryption
+    decrypted = aes.decrypt(iv, ciphertext, None)
+    recovered_text = decrypted.decode("utf-8")
+
+    print("\n--- [2] AES DECRYPTION ---")
+    print(f"    Decrypted Message : '{recovered_text}'")
+
+    # Step 4: SHA-256 Hash Digest
+    hash_value = hashlib.sha256(data).hexdigest()
+
+    print("\n--- [3] SHA-256 MESSAGE INTEGRITY HASH ---")
+    print(f"    SHA-256 Digest    : {hash_value}")
+
+    # Step 5: Verification & Tamper Resistance Test
+    print("\n--- [4] AUTHENTICATION & TAMPER TEST ---")
+    is_valid = (message == recovered_text)
+    print(f"    Original vs Decrypted Match : {is_valid}")
+
+    # Tamper simulation: alter 1 byte in ciphertext
+    tampered_ct = bytearray(ciphertext)
+    tampered_ct[0] ^= 0xFF
     try:
-        secure_receive(tampered_payload, secret_pass)
-    except ValueError as e:
-        print(f"[+] Tamper Defense Result: {e}")
-        
+        aes.decrypt(iv, bytes(tampered_ct), None)
+        print("    Tamper Test Result: FAILED (Tamper was not detected)")
+    except Exception:
+        print("    Tamper Test Result: SUCCESS (Tampered ciphertext rejected by GCM tag!)")
+
     print("\n" + "=" * 75)
     print(" [OK] Practical 08 Completed Successfully!")
     print("=" * 75)
+
 
 if __name__ == "__main__":
     main()

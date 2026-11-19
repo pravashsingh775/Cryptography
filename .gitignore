@@ -17,3 +17,4 @@ test_shadow
 target_hashes.txt
 ipp.txt
 openvpn-status.log
+*.lnk

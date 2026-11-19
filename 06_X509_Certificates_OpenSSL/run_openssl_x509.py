@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Practical 06: Self-Signed X.509 Digital Certificate Runner
+Student Name: Pravash Singh
 Course: Cryptography (CSL0509)
 Faculty: Mr. Hirendra Singh Sengar
 """

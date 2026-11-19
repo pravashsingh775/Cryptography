@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Practical 02: Frequency Analysis on Classical Cipher Texts
+Student Name: Pravash Singh
 Course: Cryptography (CSL0509)
 Faculty: Mr. Hirendra Singh Sengar
 """

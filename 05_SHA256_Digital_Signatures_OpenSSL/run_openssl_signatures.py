@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Practical 05: SHA-256 Hash Values & Digital Signatures with OpenSSL
+Student Name: Pravash Singh
 Course: Cryptography (CSL0509)
 Faculty: Mr. Hirendra Singh Sengar
 """

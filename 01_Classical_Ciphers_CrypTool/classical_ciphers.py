@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Practical 01: Implementation of Caesar, Vigenère, and Rail Fence Ciphers
-Course: Cryptography (CSL0509)
-Faculty: Mr. Hirendra Singh Sengar
+Student Name: Pravash Singh
+Course: Cryptography (CSL0509) – B.Tech AIML V Semester
+Faculty Name: Mr. Hirendra Singh Sengar
+Academic Year: 2026-27
 """
+
 
 def caesar_encrypt(plaintext: str, shift: int = 3) -> str:
     ciphertext = []
@@ -11,7 +14,7 @@ def caesar_encrypt(plaintext: str, shift: int = 3) -> str:
     print(f"    Formula: C = (P + {shift}) mod 26")
     for char in plaintext:
         if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
+            base = ord("A") if char.isupper() else ord("a")
             ciphertext.append(chr((ord(char) - base + shift) % 26 + base))
         else:
             ciphertext.append(char)
@@ -20,17 +23,19 @@ def caesar_encrypt(plaintext: str, shift: int = 3) -> str:
     print(f"    Ciphertext: '{res}'")
     return res
 
+
 def caesar_decrypt(ciphertext: str, shift: int = 3) -> str:
     plaintext = []
     for char in ciphertext:
         if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
+            base = ord("A") if char.isupper() else ord("a")
             plaintext.append(chr((ord(char) - base - shift + 26) % 26 + base))
         else:
             plaintext.append(char)
     res = "".join(plaintext)
     print(f"[*] Caesar Decrypted: '{res}'")
     return res
+
 
 def vigenere_encrypt(plaintext: str, key: str = "KEY") -> str:
     ciphertext = []
@@ -41,9 +46,9 @@ def vigenere_encrypt(plaintext: str, key: str = "KEY") -> str:
     key_idx = 0
     for char in plaintext:
         if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
+            base = ord("A") if char.isupper() else ord("a")
             p_val = ord(char) - base
-            k_val = ord(key_upper[key_idx % key_len]) - ord('A')
+            k_val = ord(key_upper[key_idx % key_len]) - ord("A")
             ciphertext.append(chr((p_val + k_val) % 26 + base))
             key_idx += 1
         else:
@@ -53,6 +58,7 @@ def vigenere_encrypt(plaintext: str, key: str = "KEY") -> str:
     print(f"    Ciphertext: '{res}'")
     return res
 
+
 def vigenere_decrypt(ciphertext: str, key: str = "KEY") -> str:
     plaintext = []
     key_upper = key.upper()
@@ -60,9 +66,9 @@ def vigenere_decrypt(ciphertext: str, key: str = "KEY") -> str:
     key_idx = 0
     for char in ciphertext:
         if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
+            base = ord("A") if char.isupper() else ord("a")
             c_val = ord(char) - base
-            k_val = ord(key_upper[key_idx % key_len]) - ord('A')
+            k_val = ord(key_upper[key_idx % key_len]) - ord("A")
             plaintext.append(chr((c_val - k_val + 26) % 26 + base))
             key_idx += 1
         else:
@@ -70,6 +76,7 @@ def vigenere_decrypt(ciphertext: str, key: str = "KEY") -> str:
     res = "".join(plaintext)
     print(f"[*] Vigenere Decrypted: '{res}'")
     return res
+
 
 def rail_fence_encrypt(plaintext: str, rails: int = 3) -> str:
     clean_text = "".join(plaintext.split())
@@ -87,6 +94,7 @@ def rail_fence_encrypt(plaintext: str, rails: int = 3) -> str:
     res = "".join(ciphertext)
     print(f"    Ciphertext: '{res}'")
     return res
+
 
 def rail_fence_decrypt(ciphertext: str, rails: int = 3) -> str:
     matrix = [["." for _ in range(len(ciphertext))] for _ in range(rails)]
@@ -113,41 +121,43 @@ def rail_fence_decrypt(ciphertext: str, rails: int = 3) -> str:
     print(f"[*] Rail Fence Decrypted: '{res}'")
     return res
 
+
 def main():
     print("=" * 75)
     print("      PRACTICAL 01: CAESAR, VIGENERE & RAIL FENCE CIPHER EXECUTION")
+    print("      Student Name: Pravash Singh | Course: Cryptography (CSL0509)")
     print("=" * 75)
-    
-    # 1. Given plaintext in Problem Statement
+
+    # 1. Given plaintext in Problem Statement: "HELLO WORLD"
     target_text = "HELLO WORLD"
     print(f"\n[+] Mandatory Problem Statement Plaintext: '{target_text}'")
-    
+
     c1 = caesar_encrypt(target_text, shift=3)
     caesar_decrypt(c1, shift=3)
-    
+
     v1 = vigenere_encrypt(target_text, key="KEY")
     vigenere_decrypt(v1, key="KEY")
-    
+
     rf1 = rail_fence_encrypt(target_text, rails=3)
     rail_fence_decrypt(rf1, rails=3)
-    
+
     # 2. Extended Practical Sample Text
     sample_text = "CRYPTOGRAPHY AND NETWORK SECURITY"
     print(f"\n\n[+] Extended Sample Plaintext: '{sample_text}'")
-    
+
     c_cipher = caesar_encrypt(sample_text, shift=3)
     caesar_decrypt(c_cipher, shift=3)
-    
+
     v_cipher = vigenere_encrypt(sample_text, key="SECRET")
     vigenere_decrypt(v_cipher, key="SECRET")
-    
+
     rf_cipher = rail_fence_encrypt(sample_text, rails=3)
     rail_fence_decrypt(rf_cipher, rails=3)
-    
+
     print("\n" + "=" * 75)
     print(" [OK] Practical 01 Completed Successfully!")
     print("=" * 75)
 
+
 if __name__ == "__main__":
     main()
-    

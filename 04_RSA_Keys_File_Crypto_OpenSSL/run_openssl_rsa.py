@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Practical 04: OpenSSL RSA Keypair Generation & File Encryption Runner
+Student Name: Pravash Singh
 Course: Cryptography (CSL0509)
 Faculty: Mr. Hirendra Singh Sengar
 """

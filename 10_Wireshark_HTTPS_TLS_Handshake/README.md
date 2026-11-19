@@ -4,7 +4,7 @@
 - **Course Name:** Cryptography
 - **Course Code:** CSL0509
 - **Semester:** Cryptography (CSL0509) – B.Tech AIML V Semester
-- **Faculty Name:** Mr. Hirendra Singh Sengar
+- **Student Name:** Pravash Singh\n- **Faculty Name:** Mr. Hirendra Singh Sengar
 - **Academic Year:** 2026–27
 - **Practical No:** 10
 - **Practical Problem Statement:** Capture HTTPS network traffic using Wireshark and analyze the TLS handshake, digital certificates, and cipher suites.
@@ -137,3 +137,12 @@ Using ephemeral Diffie-Hellman keys (`ECDHE`) ensures that even if the server's 
 
 3. **Q3: What Wireshark display filter isolates only TLS Application Data?**
    - **Answer:** `tls.record.content_type == 23` or `tls.app_data`.
+
+
+---
+
+## 📸 Packet Dissection Capture Screenshots
+
+![Wireshark TLS Handshake Capture 1](wireshark-1.jpg)
+
+![Wireshark TLS Handshake Capture 2](wireshark-2.jpg)

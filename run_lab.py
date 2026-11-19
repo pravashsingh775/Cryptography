@@ -4,7 +4,7 @@
                 CRYPTOGRAPHY PRACTICAL LAB - MASTER RUNNER
 ===================================================================================
 Run this interactive controller to execute and verify any practical (Pr. 01 to 09).
-Course: Cryptography (CSL0509) | Faculty: Mr. Hirendra Singh Sengar
+Course: Cryptography (CSL0509) | Student Name: Pravash Singh | Faculty: Mr. Hirendra Singh Sengar
 """
 
 import subprocess
